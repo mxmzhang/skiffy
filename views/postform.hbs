@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    {{>header}}
+    <body>
+        <title>Post</title>
+        {{>navbar}}
+        <form action="form-response" method="POST">
+            <div class="form-group">
+                <input name="name" type="text" class="form-control" placeholder="Your Name" maxlength="256">
+                <small class="form-text text-muted">Leave blank if you wish to remain anonymous</small>
+            </div>
+            <div class="form-group">
+                <input name="title" type="text" class="form-control" placeholder="Title" maxlength="256">
+            </div>
+            Genre<br>
+            <div class="form-check">
+                <input name="aa" class="form-check-input" type="checkbox" value="action/adventure" id="genreaa">
+                <label for="genreaa" class="form-check-label">Action/Adventure</label>
+            </div>
+            <div class="form-check">
+                <input name="c" class="form-check-input" type="checkbox" value="contemporary" id="genrecont">
+                <label for="genrecont" class="form-check-label">Contemporary</label>
+            </div>
+            <div class="form-check">
+                <input name="f" class="form-check-input" type="checkbox" value="fantasy" id="genref">
+                <label for="genref" class="form-check-label">Fantasy</label>
+            </div>
+            <div class="form-check">
+                <input name="hf" class="form-check-input" type="checkbox" value="historical fiction" id="genrehf">
+                <label for="genrehf" class="form-check-label">Historical Fiction</label>
+            </div>
+            <div class="form-check">
+                <input name="ho" class="form-check-input" type="checkbox" value="horror" id="genreho">
+                <label for="genreho" class="form-check-label">Horror</label>
+            </div>
+            <div class="form-check">
+                <input name="hu" class="form-check-input" type="checkbox" value="humor" id="genrehu">
+                <label for="genrehu" class="form-check-label">Humor</label>
+            </div>
+            <div class="form-check">
+                <input name="m" class="form-check-input" type="checkbox" value="mystery" id="genrem">
+                <label for="genrem" class="form-check-label">Mystery</label>
+            </div>
+            <div class="form-check">
+                <input name="sf" class="form-check-input last-check" type="checkbox" value="science fiction" id="genref">
+                <label for="genref" class="form-check-label">Science Fiction</label>
+            </div>
+            <div class="form-group">
+                <label for="writing-cats">Category</label>
+                <select name="category" class="form-control" id="writing-cats">
+                    <option>short story/flash fiction</option>
+                    <option>poetry</option>
+                    <option>novel excerpt</option>
+                    <option>screenplay</option>
+                    <option>essay</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="writing-sub">Submission</label>
+                <textarea name="submission" class="form-control" id="writing-sub" rows="6"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </body>
+</html>

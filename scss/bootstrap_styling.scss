@@ -1,0 +1,91 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+body {
+    background-color: #f2ecdc !important;
+    font-family: 'EB Garamond', serif !important;
+}
+#construction-message {
+    text-align: center !important;
+}
+
+.about-page {
+    margin-right: auto !important;
+    margin-left: auto;
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
+#navbarSupportedContent {
+    .nav-link {
+        font-family: 'Manrope', sans-serif !important;
+        color: #545454 !important;
+        margin: 0 10px !important;
+    }
+    .nav-link:hover {
+        color: #969696 !important;
+    }
+}
+.navbar-brand {
+    font-family: 'Caveat', cursive !important;
+    font-size: 40px !important;
+}
+
+.form-group {
+    margin: 17px 5px !important;
+    width: 70% !important;
+    small {
+        font-family: 'Poppins', sans-serif !important;
+    }
+}
+.form-check {
+    margin-left: 5px !important;
+}
+.last-check {
+    margin-bottom: 17px !important;
+}
+.btn {
+    margin: 17px 5px !important;
+}
+.like-button {
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+.like-button:hover {
+    transform: scale(1.1, 1.1);
+}
+.likesdisplay {
+    display: inline-block;
+}
+
+.article-title {
+    margin-bottom: 13px;
+}
+.article-date {
+    margin-bottom: 5px !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: #757575;
+}
+.article-author {
+    font-size: 18px;
+}
+.article-body {
+    font-size: 15px !important;
+    margin: 15px 0;
+}
+
+.article {
+    margin-bottom: 20px;
+}
+
+.title-link {
+    text-decoration: none;
+    color: black
+}
+.title-link:hover {
+    color: #877770
+}
+
+@import "../node_modules/bootstrap/scss/bootstrap";

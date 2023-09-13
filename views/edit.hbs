@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    {{>header}}
+    <body>
+        <title>Edit Submission</title>
+        {{>navbar}}
+        <form action="https://skiffy.herokuapp.com/edit-content" method="POST">
+            <div class="form-group">
+                <label for="writing-sub">Submission</label>
+                <textarea style="white-space: pre-line;" name="submission" class="form-control" id="writing-sub" rows="6">{{content}}</textarea>
+            </div>
+            <input type="hidden" name="post_id" value="{{id}}">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    {{>header}}
+    <body>
+        <title>SKIFFY</title>
+        {{>navbar}}
+        <p id="construction-message">[ currently being reconstructed! temporarily moved to tjskiffy.weebly.com ]</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9">
+                    {{#each postArr}}
+                        <div class="article">
+                            <h3 class="article-title"><a class="title-link" href="/post/{{this.post_id}}">{{this.title}}</a></h3>
+                            <h4 class="article-date">{{this.date}}</h6>
+                            <h4 class="article-author">{{this.author}}</h5>
+                            {{#if this.lengthshortened}}
+                                <p class="article-body" style="white-space: pre-line;">{{this.shortcontent}}
+                                    ... <a href="/post/{{this.post_id}}">read more</a>
+                                </p>
+                            {{else}}
+                                <p class="article-body" style="white-space: pre-line;">{{this.content}}</p>
+                            {{/if}}
+                            <div class="article-tags">
+                                Tags: 
+                                {{#each this.tags}}
+                                    <a class="tag-links" href="/?{{this.url}}">{{this.name}}</a>
+                                {{/each}}
+                            </div>
+                            <button id="{{this.post_id}}-button" type="button" class="like-button {{this.likesimg}}" onclick="onLiked({{this.post_id}})">
+                                <img width="20" height="20" src="https://skiffy.herokuapp.com/images/heart-{{this.likesimg}}.svg" id="{{this.post_id}}-likes">
+                            </button>
+                            <div id="{{this.post_id}}-likesdisplay" class="likesdisplay"> {{this.likes}} likes</div>
+                        </div>
+                    {{/each}}
+                </div>
+                <div class="col-sm-3">
+                    {{!-- <form action="/filter" method="get">
+                        Genre<br>
+                        <div class="form-check">
+                            <input name="aa" class="form-check-input" type="checkbox" value="action/adventure" id="genreaa">
+                            <label for="genreaa" class="form-check-label">Action/Adventure</label>
+                        </div>
+                        <div class="form-check">
+                            <input name="c" class="form-check-input" type="checkbox" value="contemporary" id="genrecont">
+                            <label for="genrecont" class="form-check-label">Contemporary</label>
+                        </div>
+                        <div class="form-check">
+                            <input name="f" class="form-check-input" type="checkbox" value="fantasy" id="genref">
+                            <label for="genref" class="form-check-label">Fantasy</label>
+                        </div>
+                        <div class="form-check">
+                            <input name="hf" class="form-check-input" type="checkbox" value="historical fiction" id="genrehf">
+                            <label for="genrehf" class="form-check-label">Historical Fiction</label>
+                        </div>
+                        <div class="form-check">
+                            <input name="ho" class="form-check-input" type="checkbox" value="horror" id="genreho">
+                            <label for="genreho" class="form-check-label">Horror</label>
+                        </div>
+                        <div class="form-check">
+                            <input name="hu" class="form-check-input" type="checkbox" value="humor" id="genrehu">
+                            <label for="genrehu" class="form-check-label">Humor</label>
+                        </div>
+                        <div class="form-check">
+                            <input name="m" class="form-check-input" type="checkbox" value="mystery" id="genrem">
+                            <label for="genrem" class="form-check-label">Mystery</label>
+                        </div>
+                        <div class="form-check">
+                            <input name="sf" class="form-check-input last-check" type="checkbox" value="science fiction" id="genref">
+                            <label for="genref" class="form-check-label">Science Fiction</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="writing-cats">Category</label>
+                            <select name="category" class="form-control" id="writing-cats">
+                                <option>short story/flash fiction</option>
+                                <option>poetry</option>
+                                <option>novel excerpt</option>
+                                <option>screenplay</option>
+                                <option>essay</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Filter</button>
+                    </form> --}}
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script type='text/javascript'>
+            function onLiked(postid) {
+                var likebtn = document.getElementById(postid+"-button")
+                var likeimg = document.getElementById(postid+"-likes")
+                var ajax_params
+                if(likebtn.classList.contains("unchecked")) {
+                    console.log("unchecked to checked")
+                    likeimg.src = "https://skiffy.herokuapp.com/images/heart-checked.svg"
+                    ajax_params = {
+                        'url': 'https://skiffy.herokuapp.com/likesUpdater',
+                        'type' : 'get',
+                        'success' : updateLikes,
+                        'data' : {
+                            'post' : postid,
+                            'likesupped' : 1
+                        }
+                    }
+                    likebtn.classList.remove("unchecked")
+                    likebtn.classList.add("checked")
+                } else if(likebtn.classList.contains("checked")) {
+                    console.log("checked to unchecked")
+                    likeimg.src = "https://skiffy.herokuapp.com/images/heart-unchecked.svg"
+                    ajax_params = {
+                        'url': 'https://skiffy.herokuapp.com/likesUpdater',
+                        'type' : 'get',
+                        'success' : updateLikes,
+                        'data' : {
+                            'post' : postid,
+                            'likesupped' : 0
+                        }
+                    }
+                    likebtn.classList.remove("checked")
+                    likebtn.classList.add("unchecked")
+                }
+                $.ajax( ajax_params )
+            }
+            function updateLikes(response) {
+                console.log(response)
+                var display = document.getElementById(response.postid+"-likesdisplay")
+                display.innerHTML = " "+response.updatedlikes+" likes"
+            }
+        </script>
+    </body>
+</html>
